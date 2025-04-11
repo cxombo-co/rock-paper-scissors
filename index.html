@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>Live Server</title>
+</head>
+<body>
+    <div id="menu-top">Rock-Paper-Scissors</div>
+    <div class="the-rest">
+        <div class="choice-text">Choose your Weapon</div>
+        <div class="rules">Best of 3</div>
+        
+        <div class="button-box">
+            <button type="button" class="choice">Rock</button>
+            <button type="button" class="choice">Paper</button>
+            <button type="button" class="choice">Scissor</button>
+        </div>
+        <p id="result-text" class="text-cont"></p>
+        <div class="score-main">
+            <div class="score-section">
+                Your Score
+                <p id="user-score" class="points"></p>
+            </div>
+            
+            <div class="score-section">
+                Opponent Score
+                <p id="opponent-score" class="points"></p> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userChoice = document.querySelectorAll(".choice");
+
+        let userScore = 0;
+        let opponentScore = 0;
+        let roundCount = 0;
+        let maxRounds = 3;
+
+        userChoice.forEach(button => {
+            button.addEventListener("click", () => {
+                if (roundCount < maxRounds) {
+                    let convertedChoice = `${button.textContent}`;
+                /*This line utilizes the choice as a parameter to begin the rock paper scissors game*/
+                gameTime(convertedChoice);
+                }
+                else {
+                    document.getElementById("result-text").innerHTML = "Game Over! Refresh to play again.";
+                }
+            });
+        });
+
+        /*This will be where the game function goes*/
+        function gameTime(choice) {
+            choice = choice.toLowerCase();
+            console.log("DEBUGGING-----" + choice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
+            const gameOptions = ['rock', 'paper', 'scissor'];
+            const opponentChoice = gameOptions[Math.floor(Math.random() * gameOptions.length)];  /*This generates a random choice for the opponent*/
+            console.log("DEBUGGING-----" + opponentChoice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
+
+
+            switch (choice) {
+                case "rock":
+                    switch (opponentChoice) {
+                        case "rock":
+                            resultMessage = "Draw!"
+                            roundCount++;
+                            break;
+                        case "paper":
+                            resultMessage = "You Lose!"
+                            opponentScore++;
+                            roundCount++;
+                            break;
+                        case "scissor":
+                            resultMessage = "You Win!"
+                            userScore++;
+                            roundCount++;
+                            break;
+                    }
+                    break; 
+                case "paper":
+                    switch(opponentChoice) {
+                        case "rock":
+                            resultMessage = "You Win!"
+                            userScore++
+                            roundCount++;
+                            break;
+                        case "paper":
+                            resultMessage = "Draw!"
+                            roundCount++;
+                            break;
+                        case "scissor":
+                            resultMessage = "You Lose!"
+                            opponentScore++;
+                            roundCount++;
+                            break;
+                    }
+                    break; 
+                case "scissor":
+                    switch (opponentChoice) {
+                        case "rock":
+                            resultMessage = "You Lose!"
+                            opponentScore++;
+                            roundCount++;
+                            break;
+                        case "paper":
+                            resultMessage = "You Win!"
+                            userScore++;
+                            roundCount++;
+                            break;
+                        case "scissor":
+                            resultMessage = "Draw!"
+                            roundCount++;
+                            break;
+                    }
+                    break; 
+            }
+            document.getElementById("result-text").innerHTML = resultMessage;
+            document.getElementById("user-score").innerHTML = userScore;
+            document.getElementById("opponent-score").innerHTML = opponentScore;
+        }
+    </script>
+
+</body>
+</html>
