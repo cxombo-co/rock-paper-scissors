@@ -7,7 +7,7 @@
 
 
 /*This is a general flexbox layout */
-#menu-top, .choice-text, .rules, .text-cont, .score-section {
+#menu-top, .choice-text, .rules, .text-cont, .score-section, .restart-section {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -107,3 +107,4 @@ button {
     justify-content: center;
     align-self: center;
 }
+

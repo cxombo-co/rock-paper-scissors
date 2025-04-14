@@ -30,6 +30,9 @@
                 <p id="opponent-score" class="points"></p> 
             </div>
         </div>
+        <div class="restart-section">
+            <button type="button" class="choice">Restart</button>
+        </div>
     </div>
 
     <script>
@@ -44,11 +47,13 @@
             button.addEventListener("click", () => {
                 if (roundCount < maxRounds) {
                     let convertedChoice = `${button.textContent}`;
-                /*This line utilizes the choice as a parameter to begin the rock paper scissors game*/
-                gameTime(convertedChoice);
+                    gameTime(convertedChoice); /*This line utilizes the choice as a parameter to begin the rock paper scissors game*/
                 }
                 else {
-                    document.getElementById("result-text").innerHTML = "Game Over! Refresh to play again.";
+                    document.getElementById("result-text").innerHTML = "Game Over! Press the restart button to play again.";
+                    let convertedChoice = `${button.textContent}`;
+                    restartFunction(convertedChoice);
+
                 }
             });
         });
@@ -57,7 +62,7 @@
         function gameTime(choice) {
             choice = choice.toLowerCase();
             console.log("DEBUGGING-----" + choice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
-            const gameOptions = ['rock', 'paper', 'scissor'];
+            const gameOptions = ['rock', 'paper', 'scissor', 'restart'];
             const opponentChoice = gameOptions[Math.floor(Math.random() * gameOptions.length)];  /*This generates a random choice for the opponent*/
             console.log("DEBUGGING-----" + opponentChoice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
 
@@ -79,6 +84,8 @@
                             userScore++;
                             roundCount++;
                             break;
+
+
                     }
                     break; 
                 case "paper":
@@ -121,6 +128,15 @@
             document.getElementById("result-text").innerHTML = resultMessage;
             document.getElementById("user-score").innerHTML = userScore;
             document.getElementById("opponent-score").innerHTML = opponentScore;
+        }
+        function restartFunction(choice) {
+            choice = choice.toLowerCase();
+            switch (choice) {
+                case 'restart': 
+                    window.location.reload();
+                    break;
+
+            }
         }
     </script>
 
