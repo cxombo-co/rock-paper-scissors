@@ -61,10 +61,8 @@
         /*This will be where the game function goes*/
         function gameTime(choice) {
             choice = choice.toLowerCase();
-            console.log("DEBUGGING-----" + choice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
-            const gameOptions = ['rock', 'paper', 'scissor', 'restart'];
+            const gameOptions = ['rock', 'paper', 'scissor'];
             const opponentChoice = gameOptions[Math.floor(Math.random() * gameOptions.length)];  /*This generates a random choice for the opponent*/
-            console.log("DEBUGGING-----" + opponentChoice); /*This is the OPPONENT'S choice being printed DELETE LATER*/
 
 
             switch (choice) {
